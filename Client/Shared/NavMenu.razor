@@ -1,0 +1,32 @@
+﻿<Bar
+  Mode="BarMode.VerticalInline"
+  CollapseMode="BarCollapseMode.Small"
+  Breakpoint="Breakpoint.Desktop"
+  NavigationBreakpoint="Breakpoint.Tablet"
+  ThemeContrast="ThemeContrast.Dark"
+>
+  <BarBrand>
+    <BarItem>
+      <BarLink To="">
+        <BarIcon IconName="IconName.Dashboard" />
+        BlazorApp
+      </BarLink>
+    </BarItem>
+  </BarBrand>
+  <BarMenu>
+    <BarStart>
+      @* <BarItem>
+        <BarLink To="#">
+          <BarIcon IconName="IconName.Dashboard" />
+          A fazeres
+        </BarLink>
+      </BarItem> *@
+      <BarItem>
+        <BarLink To="todoList">
+          <BarIcon IconName="IconName.User" />
+          Todo
+        </BarLink>
+      </BarItem>
+    </BarStart>
+  </BarMenu>
+</Bar>

@@ -1,0 +1,11 @@
+﻿@page "/"
+@using Helpers
+
+<h1>Hello, @CustomGreet.customGreeting(name)</h1>
+
+<Button Color="Color.Danger">Cancelar</Button>
+<Button Color="Color.Success">Salvar</Button>
+
+@code{
+    string name = "Giovanna";
+}
