@@ -2,6 +2,22 @@
 
 <h1>Todo List</h1>
 
+<Addons>
+    <Column ColumnSize="ColumnSize.Is6">
+        <TextEdit Placeholder="Todo" @bind-Text="newTodo"/>
+    </Column>
+    <Column ColumnSize="ColumnSize.Is3">
+        <Check TValue="bool" Checked="@done" CheckedChanged="@CheckDone">Já fiz</Check>
+    </Column>
+    <Column ColumnSize="ColumnSize.Is3">
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Success" @onclick="AddTask">Adicionar</Button>
+        </Addon>
+    </Column>
+</Addons>
+
+<br>
+
 <Table>
     <TableHeader ThemeContrast="ThemeContrast.Light">#</TableHeader>
     <TableBody>
@@ -9,6 +25,9 @@
         {
             <TableRow>
                 <TableRowCell>@item.Title</TableRowCell>
+                <TableRowCell>
+                    <Check TValue="bool" @bind-Checked="@item.Done"></Check>
+                </TableRowCell>
             </TableRow>
         }
     </TableBody>
@@ -17,11 +36,31 @@
 @code{
     List<Todo> listaTodo;
 
+    public string newTodo { get; set; }
+    public bool done { get; set; }
+
+    private void AddTask()
+    {
+        listaTodo.Add(new Todo(){ Title = newTodo, Done = done });
+        Clear();
+    }
+
+    private void CheckDone(bool value)
+    {
+        done = value;
+    }
+
+    private void Clear()
+    {
+        newTodo = "";
+        done = false;
+    }
+
     protected override void OnInitialized()
     {
         listaTodo = new List<Todo>(){
             new Todo(){ Title = "Passear com o cachorro", Done = false },
-            new Todo(){ Title = "Comprar leite", Done = false },
+            new Todo(){ Title = "Comprar leite", Done = true },
             new Todo(){ Title = "Estudar programação", Done = false }
         };
     }
